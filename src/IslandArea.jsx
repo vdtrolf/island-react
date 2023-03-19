@@ -41,11 +41,11 @@ export default function IslandArea(props) {
           illuminatedId={illuminatedId}/>)} 
           </div>
           <div className="NameArea" style={{zIndex:'50', pointerEvents:'none'}}>
-            <div id="islandName">{island.name}</div>
+            <div id="islandName">{island.name} {runningState===PAUSED?"(Paused - " + island.counter + ")":""}</div>
             <div id="score">{island.points}</div>
           </div>
           <WeatherArea weather={weather} runningState={runningState}/>
-          {(runningState===PAUSED || runningState===ENDED) && <StateArea runningState={runningState} />}
+          {(runningState===ENDED) && <StateArea runningState={runningState} />}
         </div>
       </>
     )

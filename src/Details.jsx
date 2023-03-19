@@ -5,6 +5,13 @@ import peng_m from "./images/peng-m-0.png";
 import peng_f from "./images/peng-f-0.png";
 import peng_y from "./images/peng-y-0.png";
 
+import dir_from from "./images/dir-from.png";
+import dir_1 from "./images/dir-1.png";
+import dir_2 from "./images/dir-2.png";
+import dir_3 from "./images/dir-3.png";
+import dir_4 from "./images/dir-4.png";
+import dir_to from "./images/dir-to.png";
+
 import health_0 from "./images/health-0.png";
 import health_1 from "./images/health-1.png";
 import health_2 from "./images/health-2.png";
@@ -43,7 +50,10 @@ export default function Details(props) {
 
   const {admin, sidebar, onDetailsCloseButton, penguin } = props;
   
-  console.dir(penguin)
+  const [cellList,setCellList] = useState([]);
+  const [pathWay,setPathWay] = useState("");
+
+  // console.dir(penguin)
 
   let cellartifacts = [type_0_s,type_1_s,fish_s,swim_s,ice_s];
   let cellsoils = [type_0_s,type_1_s,type_2_s,type_3_s,type_4_s,type_5_s,type_6_s,type_7_s,type_0_s]
@@ -52,12 +62,76 @@ export default function Details(props) {
   const hunger = [hunger_0,hunger_1,hunger_2,hunger_3,hunger_4,hunger_5]
   const health = [health_0,health_1,health_2,health_3,health_4,health_5]
   const shapes = ["","fat","fit","slim","lean"]
+  const dirArrows = [dir_1,dir_2,dir_3,dir_4]
   let genderTxt = penguin.gender === "m" ? "male":"female"
   if (penguin.gender === "y") genderTxt = "child"
   const activities = ["","Eating","Fishing","Making... well, you know..."]
 
+  const movesL= [0,-1,1,0,0]
+  const movesH= [0,0,0,-1,1]
+
+
   let hungerImg = hunger[Math.floor(penguin.hungry/20)]
   let healthImg = health[Math.floor(penguin.wealth/20)]
+  
+
+  const grid = []
+
+  useEffect(() => {
+
+    let aWay = "-> ";
+
+    if (penguin.knownWorld) {
+
+      for(let i = 0-penguin.vision;i <= penguin.vision; i++) {
+        let line = [];
+        for(let j = 0-penguin.vision;j <= penguin.vision; j++) {
+          line.push({cellOver:<div />})
+        }
+        grid.push(line)
+      }
+
+      // console.dir(grid)
+
+      penguin.knownWorld.forEach(cell => {
+        let cellimg = (<img src={cell.art > 0?
+            cell.art === 1 && cell.warm > 0? cellwarm[1]: cellartifacts[cell.art]:
+            cell.warm > 0 ? cellwarm[cell.soil] : cellsoils[cell.soil]} width="20px" height="20px" alt="" />)
+        let h = cell.line - 1;
+        let l = cell.col - 1;
+
+      
+        grid[h][l].cellImg = cellimg;
+      }); 
+
+      
+      grid[penguin.vision][penguin.vision].cellOver =  <img src={dir_from} width="20px" height="20px" alt="" />
+      
+      if (penguin.targetLPos > 0) {
+        let h = penguin.targetHPos - penguin.hpos + penguin.vision;
+        let l = penguin.targetLPos - penguin.lpos + penguin.vision;
+        grid[h][l].cellOver =  <img src={dir_to} width="20px" height="20px" alt="" />
+      }
+
+      let curh = penguin.vision;
+      let curl = penguin.vision;
+      penguin.path.forEach(step => {
+        let h = step.posH - penguin.hpos + penguin.vision + movesH[step.dir];
+        let l = step.posL - penguin.lpos + penguin.vision + movesL[step.dir];
+        grid[h][l].cellOver =  <img src={dirArrows[step.dir -1]} width="20px" height="20px" alt="" />
+        aWay = aWay + step.posH + "/" + step.posL + " ";
+      })
+
+      setPathWay(aWay);
+
+      const aList = []
+      grid.forEach(line => line.forEach(cell => aList.push(cell)));
+      setCellList(aList);
+
+      // console.dir(cellList)
+
+    }
+  },[penguin]);
 
     return (
       <div id="myDetails" className="Details" > 
@@ -68,6 +142,8 @@ export default function Details(props) {
             <div className="detailsBar"><div>Warmth: {100 - penguin.wealth} </div><img src={healthImg} width="100px" height="20px" alt=""/></div>
             <div className="detailsBar"><div>Has Ice: {penguin.hasIce?"yes":"no"}</div></div>
             <div className="detailsBar"><div>Strategy: {penguin.strategyShort}</div></div>
+            <div className="detailsBar"><div>Position: {penguin.hpos}/{penguin.lpos} to {penguin.targetHPos}/{penguin.targetLPos}</div><div>{pathWay}</div></div>
+
             <div className="detailsBar"><div>&nbsp;</div></div>
             <div className="detailsBar">
                 <div />
@@ -77,14 +153,24 @@ export default function Details(props) {
         </div>
         <div className="detailsGridBack" >
           {penguin.knownWorld?
-            (<div className={penguin.knownWorld.length>25?"detailsGridLarge":"detailsGridSmall"}>
-              {penguin.knownWorld.map(cell => <img src={
-                cell.art > 0?
-                    cell.art === 1 && cell.warm > 0? cellwarm[1]: cellartifacts[cell.art]:
-                    cell.warm > 0 ? cellwarm[cell.soil] : cellsoils[cell.soil]
-                }width="20px" height="20px" alt="" />)}
+            (<div className={penguin.knownWorld.length>25?"detailsGridLarge":"detailsGridSmall"} >
+              {cellList.map(cell=> cell.cellImg)}
           </div>)
             :(<div className="detailsGridLarge" />)
+          }
+          {penguin.knownWorld? 
+            (<div className={penguin.knownWorld.length>25?"dirGridLarge":"dirGridSmall"} >
+              {cellList.map(cell=> cell.cellOver)}
+          </div>)
+            :(<div className="dirGridLarge" />)
+          
+          
+          /* {penguin.knownWorld?
+            (<div className={penguin.knownWorld.length>25?"dirGridLarge":"dirGridSmall"}  >
+              {penguin.knownWorld.map(cell => <img src={dir_to} width="20px" height="20px" alt="" />)}
+          </div>)
+            :(<div className="detailsGridLarge" />)
+          } */ 
           }
         </div>
       </div>

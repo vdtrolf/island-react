@@ -44,10 +44,9 @@ export default function App() {
     document.title = 'TAP TAP Penguin (' + baseURL.name + ")";
   },[baseURL]);
 
-
   useEffect(() => {
     var intervalId = 0;
-    if (runningState === RUNNING) {
+    if (runningState === RUNNING || runningState === PAUSED ) {
       if(!island.id) {
         getNewIsland(baseURL.url)
         .then((newIsland ) => setIsland(newIsland));
@@ -57,6 +56,10 @@ export default function App() {
         .then((updatedIsland) => setIsland(updatedIsland));
 
         setFollowId(0);
+
+        island.penguins.forEach(penguin => {
+          if (penguin.key === selectedId && ! penguin.alive) setSelectedId(0);
+        });
 
         // if (sidebar) {
           refreshIslandsList(baseURL.url)
@@ -108,13 +111,25 @@ export default function App() {
   const handleStartButton = () => {
     if (runningState === ENDED) {
       setIsland({})
-    }
+    } 
+
     setRunningState(RUNNING)
+    setRunning(baseURL.url, island.id, true)
     // console.log("BUTTON START PRESSED");
   } 
 
+  const handleOnceButton = () => {
+    if (runningState === PAUSED && island && island.id > 0 ) {
+      runOnce(baseURL.url,island.id)
+    }
+  } 
+
   const handleStopButton = () => {
-    setRunningState(PAUSED)
+    if(runningState === RUNNING) {
+      setRunningState(PAUSED)
+      setRunning(baseURL.url, island.id, false)
+    }
+
     // console.log("BUTTON START PRESSED");
   } 
 
@@ -235,12 +250,11 @@ export default function App() {
     setShowBalloons(checkBalloons);
   }
 
-
   return (
     <div className="App">
       <Sidebar admin={admin} baseURL={baseURL} onCloseButton={handleCloseButton} onIslandSelect={handleIslandSelect} onIslandDelete={handleIslandDelete} islandId={island.id} islandsList={islandsList} sidebar={sidebar}/>
       <Adminbar showBalloons={showBalloons} admin={admin} baseURL={baseURL} onCloseButton={handleCloseButton} onLogoutButton={handleLogoutButton} onSetBalloons={handleSetBalloons} adminbar={adminbar} urls={urls} onURLSelect={handleURLSelect} onUserInput={handlUserInput}/>
-      <Navbar runningState={runningState} island={island} baseURL={baseURL} admin={admin} pulser={pulser} onStartButton={handleStartButton} onStopButton={handleStopButton} onPlusButton={handlePlusButton} onCloneButton={handleCloneButton} onStepsButton={handleStepsButton} onAdminButton={handleAdminButton} />
+      <Navbar runningState={runningState} island={island} baseURL={baseURL} admin={admin} pulser={pulser} onStartButton={handleStartButton} onOnceButton={handleOnceButton} onStopButton={handleStopButton} onPlusButton={handlePlusButton} onCloneButton={handleCloneButton} onStepsButton={handleStepsButton} onAdminButton={handleAdminButton} />
       <div className="WorkArea">
         <IslandArea showBalloons={showBalloons} runningState={runningState} island={island} onTileClick={handleTileClick} illuminatedId={illuminatedId}/>
         <div></div>
@@ -282,10 +296,20 @@ const refreshIslandsList = async (baseURL,islandToDelete=0)  => {
 }
 
 const sendState = async (baseURL) => {
-  const data = await convert(baseURL + "state" );
+  const data = await convert(baseURL + "state");
   return data;
 }
 
+const setRunning = async (baseURL, islandId, isrunning) => {
+  if (islandId > 0) {
+    await convert(baseURL + "setrunning?islandId=" + islandId + "&runningstate=" + isrunning);
+  } 
+}
+
+const runOnce = async (baseURL, islandId) => {
+  const data = await convert(baseURL + "runonce?islandId=" + islandId);
+  return data;
+}
 
 const extractIslandData = (islandData) => {
 
@@ -295,62 +319,74 @@ const extractIslandData = (islandData) => {
   const artifacts = [];
   const penguins = [];
 
-  islandData.island.forEach(tile => {
-    tiles.push({key: tile.li *10 + tile.col, type: tile.type, num: tile.num, var: tile.var, line: tile.li, col:tile.col})
-    artifacts.push({key: (10000 + tile.li *10 + tile.col), type: tile.art, age: tile.age, line: tile.li, col:tile.col})
-  }); 
+  if (islandData && islandData.island) {
 
-  { /* console.dir(artifacts) */ }
+    islandData.island.forEach(tile => {
+      tiles.push({key: tile.li *10 + tile.col, type: tile.type, num: tile.num, var: tile.var, line: tile.li, col:tile.col})
+      artifacts.push({key: (10000 + tile.li *10 + tile.col), type: tile.art, age: tile.age, line: tile.li, col:tile.col})
+    }); 
 
-  islandData.penguins.forEach(penguin => {
-    var gender = penguin.gender==="male"?"m":"f";
-    if (penguin.age < 6 ) gender = "y";
-    var activity = 0;
-    if (penguin.eating > 0) {
-      activity = 1;
-    } else if (penguin.fishTime > 0) {
-      activity = 2;
-    } else if (penguin.loving > 0) {
-      activity = 3;
-    } else if (penguin.digTime > 0) {
-      activity = 4;
-    } else if (penguin.fillTime > 0) {
-      activity = 5;
-    }
-    penguins.push({key: penguin.id, 
-                   alive:penguin.alive, 
-                   name:penguin.name, 
-                   lpos:penguin.lpos, 
-                   hpos:penguin.hpos, 
-                   hasIce:penguin.hasIce, 
-                   gender: gender, 
-                   activity: activity, 
-                   hungry:penguin.hungry, 
-                   wealth:penguin.wealth, 
-                   shape:penguin.fat, 
-                   age:penguin.age, 
-                   genderName:penguin.gender, 
-                   fishDirection:penguin.fishDirection, 
-                   digDirection:penguin.digDirection, 
-                   fillDirection:penguin.fillDirection, 
-                   strategyShort:penguin.strategyShort, 
-                   moveDirection:penguin.moveDirection, 
-                   knownWorld: penguin.knownWorld,
-                   vision: penguin.vison,
-                   targetDirections: penguin.targetDirections,
-                   targetLPos: penguin.targetLPos,
-                   targetHPos: penguin.targetHPos,
-                   illuminated:false})
-  }); 
+    { /* console.dir(artifacts) */ }
 
-  return {id: islandData.islandId,
-          name: islandData.islandName,
-          size: islandData.islandSize,
-          points: islandData.points,
-          weather: islandData.weather,
-          tilesCount: islandData.tiles,
-          fishesCount: islandData.fishes,
-          tiles: tiles,
-          artifacts: artifacts,
-          penguins: penguins}
+    islandData.penguins.forEach(penguin => {
+      var gender = penguin.gender==="male"?"m":"f";
+      if (penguin.age < 6 ) gender = "y";
+      var activity = 0;
+      if (penguin.eating > 0) {
+        activity = 1;
+      } else if (penguin.fishTime > 0) {
+        activity = 2;
+      } else if (penguin.loving > 0) {
+        activity = 3;
+      } else if (penguin.digTime > 0) {
+        activity = 4;
+      } else if (penguin.fillTime > 0) {
+        activity = 5;
+      }
+
+      
+      penguins.push({key: penguin.id, 
+                    alive:penguin.alive, 
+                    name:penguin.name, 
+                    lpos:penguin.lpos, 
+                    hpos:penguin.hpos, 
+                    hasIce:penguin.hasIce, 
+                    gender: gender, 
+                    activity: activity, 
+                    hungry:penguin.hungry, 
+                    wealth:penguin.wealth, 
+                    shape:penguin.fat, 
+                    age:penguin.age, 
+                    genderName:penguin.gender, 
+                    fishDirection:penguin.fishDirection, 
+                    digDirection:penguin.digDirection, 
+                    fillDirection:penguin.fillDirection, 
+                    strategyShort:penguin.strategyShort, 
+                    moveDirection:penguin.moveDirection, 
+                    knownWorld: penguin.knownWorld,
+                    vision: penguin.vison,
+                    targetDirections: penguin.targetDirections,
+                    targetLPos: penguin.targetLPos,
+                    targetHPos: penguin.targetHPos,
+                    path:penguin.path,
+                    vision: penguin.vision,
+                    illuminated:false})
+    }); 
+
+    return {id: islandData.islandId,
+            name: islandData.islandName,
+            size: islandData.islandSize,
+            points: islandData.points,
+            weather: islandData.weather,
+            tilesCount: islandData.tiles,
+            fishesCount: islandData.fishes,
+            counter: islandData.counter,
+            running: islandData.running,
+            runonce: islandData.runonce,
+            tiles: tiles,
+            artifacts: artifacts,
+            penguins: penguins}
+  } else {
+    return {}
+  }
 }

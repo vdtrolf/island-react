@@ -8,10 +8,10 @@ export default function Navbar(props) {
 
   // const NOT_STARTED = 0;
   const RUNNING = 1;
-  // const PAUSED = 2;
+  const PAUSED = 2;
   // const ENDED = 3;
 
-  const { runningState, island, admin, baseURL, pulser, onStartButton, onStopButton, onPlusButton, onCloneButton, onStepsButton, onAdminButton } = props;
+  const { runningState, island, admin, baseURL, pulser, onStartButton, onOnceButton, onStopButton, onPlusButton, onCloneButton, onStepsButton, onAdminButton } = props;
 
   var tilesLine =[];
   var fishesLine =[];
@@ -29,8 +29,9 @@ export default function Navbar(props) {
         <div className="NavbarInfoLine" >{fishesLine}</div>
       </div>
       <div className="ButtonArea">
-        {(!admin || baseURL.name==="local")&&<div>&nbsp;</div>}
+        {runningState !== PAUSED && <div>&nbsp;</div>}
         <Button className={runningState===RUNNING?"ButtonStop":"ButtonStart"} onClickHandler={runningState===RUNNING?onStopButton:onStartButton}>&nbsp;</Button>
+        {runningState === PAUSED && <Button className="ButtonOnce" onClickHandler={onOnceButton}>&nbsp;</Button>}
         <Button className="ButtonPlus" onClickHandler={onPlusButton}>&nbsp;</Button>
         <Button className="ButtonClone" onClickHandler={onCloneButton}>&nbsp;</Button>
         {(admin && baseURL.name!=="local")&&<Button className={pulser?"ButtonStepsRunnning":"ButtonSteps"} onClickHandler={onStepsButton}>&nbsp;</Button>}

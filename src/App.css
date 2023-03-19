@@ -294,6 +294,14 @@ label {
   background-image: url("./images/TTP-start-hover-24.png");
 }
 
+.ButtonOnce {
+  background-image: url("./images/TTP-runOnce-24.png");
+}
+
+.ButtonOnce:hover {
+  background-image: url("./images/TTP-runOnce-hover-24.png");
+}
+
 .ButtonStop {
   background-image: url("./images/TTP-stop-24.png");
 }
@@ -513,25 +521,49 @@ label {
   background-repeat: no-repeat;
   width: 180px;
   height: 180px;
+  z-index:0;
 }
 
 .detailsGridSmall {
-  margin: 30px 30px;
-  padding: 0px 0px;
+  position: absolute;
+  top: 694px;
+  left:452px;
+  z-index:10;
   display: grid;
+  grid-template-rows: 20px 20px 20px 20px 20px;
+  grid-template-columns: 20px 20px 20px 20px 20px;
+}
+
+.dirGridSmall {
+  position: absolute;
+  top: 694px;
+  left:452px;
+  z-index:20;  
   display: grid;
   grid-template-rows: 20px 20px 20px 20px 20px;
   grid-template-columns: 20px 20px 20px 20px 20px;
 }
 
 .detailsGridLarge {
-  margin: 10px 10px;
-  padding: 0px 0px;
-  display: grid;
+  position: absolute;
+  top: 674px;
+  left:432px;
+  z-index:10;
   display: grid;
   grid-template-rows: 20px 20px 20px 20px 20px 20px 20px;
   grid-template-columns: 20px 20px 20px 20px 20px 20px 20px;
 }
+
+.dirGridLarge {
+  position: absolute;
+  top: 674px;
+  left:432px;
+  z-index:20;
+  display: grid;
+  grid-template-rows: 20px 20px 20px 20px 20px 20px 20px;
+  grid-template-columns: 20px 20px 20px 20px 20px 20px 20px;
+}
+
 
 /* The sidebar menu */
 
