@@ -2,7 +2,7 @@ import React from "react";
 import Button from "./Button.jsx";
 import logo from "./images/TTP-Logo.png";
 import stile from "./images/tile-s.png";
-import sfish from "./images/fish-s.png";
+import sfood from "./images/food-s.png";
 
 export default function Navbar(props) {
 
@@ -14,11 +14,11 @@ export default function Navbar(props) {
   const { runningState, island, admin, baseURL, pulser, onStartButton, onOnceButton, onStopButton, onPlusButton, onCloneButton, onStepsButton, onAdminButton } = props;
 
   var tilesLine =[];
-  var fishesLine =[];
+  var foodLine =[];
 
   if (island) {
     for (let i=0;i <island.tilesCount && i < 9 ;i++) tilesLine.push(<img key={i} src={stile} width="24px" height ="24px" alt="" transition= "0.5s" />)
-    for (let i=0;i <island.fishesCount && i < 9 ;i++) fishesLine.push(<img key={i+1000} src={sfish} width="24px" height ="24px" alt="" transition= "0.5s" />)
+    for (let i=0;i <island.foodCount && i < 9 ;i++) foodLine.push(<img key={i+1000} src={sfood} width="24px" height ="24px" alt="" transition= "0.5s" />)
   }
  
   return (
@@ -26,7 +26,7 @@ export default function Navbar(props) {
       <img src={logo} alt="logo" />
       <div className="NavbarInfo" >
         <div className="NavbarInfoLine" >{tilesLine}</div>
-        <div className="NavbarInfoLine" >{fishesLine}</div>
+        <div className="NavbarInfoLine" >{foodLine}</div>
       </div>
       <div className="ButtonArea">
         {runningState !== PAUSED && <div>&nbsp;</div>}

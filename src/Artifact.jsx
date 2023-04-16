@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from "react";
 import empty from "./images/empty.png";
-import fish from "./images/fish-t.png";
-import swim from "./images/fish.png";
+import food from "./images/food.png";
+import swim from "./images/fish-1-still.gif";
 import cross from "./images/cross.png";
 import wreath from "./images/wreath.png";
 import ice from "./images/ice.png";
@@ -18,7 +18,7 @@ export default function Artifact(props) {
   const [artifact,setArtifact] = useState({});  
   const {className,type,age, ...attribs } = props;
   
-  const artifacts = [empty, wreath, cross, fish, swim, ice, kept]
+  const artifacts = [empty, wreath, cross, food, swim, ice, kept]
   
   const digImg = [empty,ice_1,ice_2,ice_3,ice_4,ice_5,ice_6];
 

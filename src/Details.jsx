@@ -25,7 +25,7 @@ import hunger_3 from "./images/hunger-3.png";
 import hunger_4 from "./images/hunger-4.png";
 import hunger_5 from "./images/hunger-5.png";
 
-import fish_s from "./images/PF-fish.png";
+import food_s from "./images/PF-food.png";
 import swim_s from "./images/swim-s.png";
 import ice_s from "./images/ice-s.png";
 
@@ -55,7 +55,7 @@ export default function Details(props) {
 
   // console.dir(penguin)
 
-  let cellartifacts = [type_0_s,type_1_s,fish_s,swim_s,ice_s];
+  let cellartifacts = [type_0_s,type_1_s,food_s,swim_s,ice_s];
   let cellsoils = [type_0_s,type_1_s,type_2_s,type_3_s,type_4_s,type_5_s,type_6_s,type_7_s,type_0_s]
   let cellwarm = [type_0_s,type_1_w,type_2_w,type_3_w,type_4_w,type_5_w,type_6_w,type_7_w,type_1_w]
 

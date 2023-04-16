@@ -9,7 +9,7 @@ import peng_m_eating from "./images/peng-m-eating.gif";
 import peng_y_eating from "./images/peng-y-eating.gif";
 import peng_loving from "./images/peng-loving.gif";
 
-import balloon_fish from "./images/balloon-fish.png";
+import balloon_food from "./images/balloon-food.png";
 import balloon_stable from "./images/balloon-stable.png";
 import balloon_warmth from "./images/balloon-warmth.png";
 import balloon_love from "./images/balloon-love.png";
@@ -108,7 +108,7 @@ export default function Penguin(props) {
         balloon = balloon_warmth;
         hasballoon = true;
       } if (penguinObj.strategyShort.endsWith("food")) {
-        balloon = balloon_fish;
+        balloon = balloon_food;
         hasballoon = true;
       } if (penguinObj.strategyShort.endsWith("love")) {
         balloon = balloon_love;
@@ -121,6 +121,7 @@ export default function Penguin(props) {
 
     var image = peng_loving;
     if (penguinObj.activity === 0) {
+      
       if (penguinObj.moveDirection) {
         if (penguinObj.hasIce) {
           image = penguinObj.gender ==="m"? movice_m[penguinObj.moveDirection]: movice_f[penguinObj.moveDirection];

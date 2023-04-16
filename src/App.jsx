@@ -379,7 +379,7 @@ const extractIslandData = (islandData) => {
             points: islandData.points,
             weather: islandData.weather,
             tilesCount: islandData.tiles,
-            fishesCount: islandData.fishes,
+            foodCount: islandData.food,
             counter: islandData.counter,
             running: islandData.running,
             runonce: islandData.runonce,
