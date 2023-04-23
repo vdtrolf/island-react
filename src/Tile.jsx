@@ -1,5 +1,4 @@
 import React, {useState,useEffect} from "react";
-import Button from "./Button.jsx";
 import tile_0_A from "./images/PF-1-0-a.png";
 import tile_0_B from "./images/PF-1-0-b.png";
 import tile_1_A from "./images/PF-1-1-a.png";
@@ -39,26 +38,28 @@ import empty from "./images/empty.png";
 export default function Tile(props) {
 
   const [tile,setTile] = useState({});  
-  const {className,tileType,tileNum, tileVar, tileLine, tileCol, onTileClick, ...attribs } = props;
+  const {tileType,tileNum, tileVar, tileLine, tileCol, onTileClick } = props;
   
-  const tiles = [tile_0_A,tile_0_B,
-                 tile_1_A,tile_1_B,
-                 tile_2_A,tile_2_B,
-                 tile_3_A,tile_3_B,
-                 tile_4_A,tile_4_B,
-                 tile_5_A,tile_5_B,
-                 tile_6_A,tile_6_B,
-                 tile_7_A,tile_7_B,
-                 tile_8_A,tile_8_B,
-                 tile_9_A,tile_9_B,
-                 tile_10_A,tile_10_B,
-                 tile_11_A,tile_11_B,
-                 tile_12_A,tile_12_B,
-                 tile_13_A,tile_13_B,
-                 tile_14_A,tile_14_B,
-                 tile_15_A,tile_15_B];
+  useEffect(() => {
 
-   useEffect(() => {
+    const tiles = [tile_0_A,tile_0_B,
+      tile_1_A,tile_1_B,
+      tile_2_A,tile_2_B,
+      tile_3_A,tile_3_B,
+      tile_4_A,tile_4_B,
+      tile_5_A,tile_5_B,
+      tile_6_A,tile_6_B,
+      tile_7_A,tile_7_B,
+      tile_8_A,tile_8_B,
+      tile_9_A,tile_9_B,
+      tile_10_A,tile_10_B,
+      tile_11_A,tile_11_B,
+      tile_12_A,tile_12_B,
+      tile_13_A,tile_13_B,
+      tile_14_A,tile_14_B,
+      tile_15_A,tile_15_B];
+
+
         var tileImg = empty;
         if (tileType === 1) {
             tileImg = tiles[tileVar==="a"?tileNum*2:tileNum*2 +1];
@@ -67,7 +68,7 @@ export default function Tile(props) {
         }
         
         setTile({num:tileNum,var:tileVar,line:tileLine,col:tileCol,img:tileImg});
-   },[tileType,tileNum])              
+   },[tileType,tileNum,tileCol,tileLine,tileVar])              
 
    const handleClick = () => {
       onTileClick(tile.line,tile.col);

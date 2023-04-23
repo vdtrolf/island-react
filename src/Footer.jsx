@@ -42,6 +42,7 @@ export default function Footer(props) {
           </div>
         </>
       }
+      return <></>;
     });
  
     return (

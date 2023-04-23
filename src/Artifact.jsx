@@ -16,13 +16,14 @@ import kept from "./images/fish_kept.gif";
 export default function Artifact(props) {
 
   const [artifact,setArtifact] = useState({});  
-  const {className,type,age, ...attribs } = props;
+  const {type,age} = props;
   
-  const artifacts = [empty, wreath, cross, food, swim, ice, kept]
   
-  const digImg = [empty,ice_1,ice_2,ice_3,ice_4,ice_5,ice_6];
-
   useEffect(() => {
+
+    const artifacts = [empty, wreath, cross, food, swim, ice, kept]
+  
+    const digImg = [empty,ice_1,ice_2,ice_3,ice_4,ice_5,ice_6];
 
     if (type === 5 && age > 0 ) {
       setArtifact({type:type, img: digImg[age]});
@@ -32,7 +33,7 @@ export default function Artifact(props) {
   },[type,age])              
 
   if (artifact.img) {
-    return <img src={artifact.img} style={{width: '48px', height:'48px', transition:'0.5s'}}  />
+    return <img src={artifact.img} style={{width: '48px', height:'48px', transition:'0.5s'}} alt="" />
   } 
 
 }

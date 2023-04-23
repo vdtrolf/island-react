@@ -79,24 +79,25 @@ export default function Penguin(props) {
 
   const [penguin,setPenguin] = useState({});  
   const {penguinObj, illuminatedId } = props;
-  const fishing_f = [peng_f_4_fishing,peng_f_1_fishing,peng_f_2_fishing,peng_f_3_fishing,peng_f_4_fishing]
-  const fishing_m = [peng_m_4_fishing,peng_m_1_fishing,peng_m_2_fishing,peng_m_3_fishing,peng_m_4_fishing]
-  const fishing_y = [peng_y_4_fishing,peng_y_1_fishing,peng_y_2_fishing,peng_y_3_fishing,peng_y_4_fishing]
-
-  const diging_f = [peng_f_4_diging,peng_f_1_diging,peng_f_2_diging,peng_f_3_diging,peng_f_4_diging]
-  const diging_m = [peng_m_4_diging,peng_m_1_diging,peng_m_2_diging,peng_m_3_diging,peng_m_4_diging]
-
-  const filling_f = [peng_f_4_filling,peng_f_1_filling,peng_f_2_filling,peng_f_3_filling,peng_f_4_filling]
-  const filling_m = [peng_m_4_filling,peng_m_1_filling,peng_m_2_filling,peng_m_3_filling,peng_m_4_filling]
-
-  const moving_f = [peng_f,peng_f_1_moving,peng_f_2_moving,peng_f_3_moving,peng_f_4_moving]
-  const moving_m = [peng_m,peng_m_1_moving,peng_m_2_moving,peng_m_3_moving,peng_m_4_moving]
-  const moving_y = [peng_y,peng_y_1_moving,peng_y_2_moving,peng_y_3_moving,peng_y_4_moving]
-  
-  const movice_f = [peng_f_ice,peng_f_1_movice,peng_f_2_movice,peng_f_3_movice,peng_f_4_movice]
-  const movice_m = [peng_m_ice,peng_m_1_movice,peng_m_2_movice,peng_m_3_movice,peng_m_4_movice]
 
   useEffect(() => {
+
+    const fishing_f = [peng_f_4_fishing,peng_f_1_fishing,peng_f_2_fishing,peng_f_3_fishing,peng_f_4_fishing]
+    const fishing_m = [peng_m_4_fishing,peng_m_1_fishing,peng_m_2_fishing,peng_m_3_fishing,peng_m_4_fishing]
+    const fishing_y = [peng_y_4_fishing,peng_y_1_fishing,peng_y_2_fishing,peng_y_3_fishing,peng_y_4_fishing]
+  
+    const diging_f = [peng_f_4_diging,peng_f_1_diging,peng_f_2_diging,peng_f_3_diging,peng_f_4_diging]
+    const diging_m = [peng_m_4_diging,peng_m_1_diging,peng_m_2_diging,peng_m_3_diging,peng_m_4_diging]
+  
+    const filling_f = [peng_f_4_filling,peng_f_1_filling,peng_f_2_filling,peng_f_3_filling,peng_f_4_filling]
+    const filling_m = [peng_m_4_filling,peng_m_1_filling,peng_m_2_filling,peng_m_3_filling,peng_m_4_filling]
+  
+    const moving_f = [peng_f,peng_f_1_moving,peng_f_2_moving,peng_f_3_moving,peng_f_4_moving]
+    const moving_m = [peng_m,peng_m_1_moving,peng_m_2_moving,peng_m_3_moving,peng_m_4_moving]
+    const moving_y = [peng_y,peng_y_1_moving,peng_y_2_moving,peng_y_3_moving,peng_y_4_moving]
+    
+    const movice_f = [peng_f_ice,peng_f_1_movice,peng_f_2_movice,peng_f_3_movice,peng_f_4_movice]
+    const movice_m = [peng_m_ice,peng_m_1_movice,peng_m_2_movice,peng_m_3_movice,peng_m_4_movice]
 
     var hasballoon = false;
     if (props.showBalloons ) {
@@ -154,7 +155,7 @@ export default function Penguin(props) {
     }
 
     setPenguin({img:image,left:penguinObj.lpos*48,top:penguinObj.hpos*48,alive:penguinObj.alive, style:style, balloon:balloon, hasballoon:hasballoon});
-  },[penguinObj,illuminatedId])    
+  },[penguinObj,illuminatedId,props.showBalloons])    
   
   if (penguin.alive) {
     return ( 

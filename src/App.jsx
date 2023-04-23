@@ -76,7 +76,7 @@ export default function App() {
       clearInterval(intervalId);
     }
 
-  },[runningState,island,baseURL,followId]);
+  },[runningState,island,baseURL,followId,selectedId]);
 
   useEffect(() => {
     refreshIslandsList(baseURL.url)
@@ -326,8 +326,6 @@ const extractIslandData = (islandData) => {
       artifacts.push({key: (10000 + tile.li *10 + tile.col), type: tile.art, age: tile.age, line: tile.li, col:tile.col})
     }); 
 
-    { /* console.dir(artifacts) */ }
-
     islandData.penguins.forEach(penguin => {
       var gender = penguin.gender==="male"?"m":"f";
       if (penguin.age < 6 ) gender = "y";
@@ -369,7 +367,6 @@ const extractIslandData = (islandData) => {
                     targetLPos: penguin.targetLPos,
                     targetHPos: penguin.targetHPos,
                     path:penguin.path,
-                    vision: penguin.vision,
                     illuminated:false})
     }); 
 

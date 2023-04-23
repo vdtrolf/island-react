@@ -1,9 +1,6 @@
 import React, {useState,useEffect} from "react";
-import Button from "./Button.jsx";
 
 import peng_m from "./images/peng-m-0.png";
-import peng_f from "./images/peng-f-0.png";
-import peng_y from "./images/peng-y-0.png";
 
 import dir_from from "./images/dir-from.png";
 import dir_1 from "./images/dir-1.png";
@@ -48,36 +45,34 @@ import type_7_w from "./images/PF-7-w.png";
 
 export default function Details(props) {
 
-  const {admin, sidebar, onDetailsCloseButton, penguin } = props;
+  const {onDetailsCloseButton, penguin } = props;
   
   const [cellList,setCellList] = useState([]);
   const [pathWay,setPathWay] = useState("");
 
   // console.dir(penguin)
 
-  let cellartifacts = [type_0_s,type_1_s,food_s,swim_s,ice_s];
-  let cellsoils = [type_0_s,type_1_s,type_2_s,type_3_s,type_4_s,type_5_s,type_6_s,type_7_s,type_0_s]
-  let cellwarm = [type_0_s,type_1_w,type_2_w,type_3_w,type_4_w,type_5_w,type_6_w,type_7_w,type_1_w]
-
+ 
   const hunger = [hunger_0,hunger_1,hunger_2,hunger_3,hunger_4,hunger_5]
   const health = [health_0,health_1,health_2,health_3,health_4,health_5]
   const shapes = ["","fat","fit","slim","lean"]
-  const dirArrows = [dir_1,dir_2,dir_3,dir_4]
   let genderTxt = penguin.gender === "m" ? "male":"female"
   if (penguin.gender === "y") genderTxt = "child"
-  const activities = ["","Eating","Fishing","Making... well, you know..."]
-
-  const movesL= [0,-1,1,0,0]
-  const movesH= [0,0,0,-1,1]
-
 
   let hungerImg = hunger[Math.floor(penguin.hungry/20)]
   let healthImg = health[Math.floor(penguin.wealth/20)]
   
 
-  const grid = []
-
   useEffect(() => {
+
+    let cellartifacts = [type_0_s,type_1_s,food_s,swim_s,ice_s];
+    let cellsoils = [type_0_s,type_1_s,type_2_s,type_3_s,type_4_s,type_5_s,type_6_s,type_7_s,type_0_s]
+    let cellwarm = [type_0_s,type_1_w,type_2_w,type_3_w,type_4_w,type_5_w,type_6_w,type_7_w,type_1_w]
+    const dirArrows = [dir_1,dir_2,dir_3,dir_4]
+    const movesL= [0,-1,1,0,0]
+    const movesH= [0,0,0,-1,1]
+
+    const grid = []
 
     let aWay = "-> ";
 
@@ -113,8 +108,6 @@ export default function Details(props) {
         grid[h][l].cellOver =  <img src={dir_to} width="20px" height="20px" alt="" />
       }
 
-      let curh = penguin.vision;
-      let curl = penguin.vision;
       penguin.path.forEach(step => {
         let h = step.posH - penguin.hpos + penguin.vision + movesH[step.dir];
         let l = step.posL - penguin.lpos + penguin.vision + movesL[step.dir];
