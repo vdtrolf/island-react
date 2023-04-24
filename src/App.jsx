@@ -318,6 +318,7 @@ const extractIslandData = (islandData) => {
   const tiles = [];
   const artifacts = [];
   const penguins = [];
+  const fishes = [];
 
   if (islandData && islandData.island) {
 
@@ -362,13 +363,24 @@ const extractIslandData = (islandData) => {
                     strategyShort:penguin.strategyShort, 
                     moveDirection:penguin.moveDirection, 
                     knownWorld: penguin.knownWorld,
-                    vision: penguin.vison,
+                    vision: penguin.vision,
                     targetDirections: penguin.targetDirections,
                     targetLPos: penguin.targetLPos,
                     targetHPos: penguin.targetHPos,
                     path:penguin.path,
                     illuminated:false})
     }); 
+
+    if (islandData.fishes) { 
+      islandData.fishes.forEach(fish => {
+        fishes.push({key: fish.id, 
+                    lpos:fish.lpos, 
+                    hpos:fish.hpos, 
+                    onHook:fish.onHook, 
+                    staying:fish.staying,
+                    direction:fish.fishDirection})
+      }); 
+    }
 
     return {id: islandData.islandId,
             name: islandData.islandName,
@@ -382,7 +394,8 @@ const extractIslandData = (islandData) => {
             runonce: islandData.runonce,
             tiles: tiles,
             artifacts: artifacts,
-            penguins: penguins}
+            penguins: penguins,
+            fishes: fishes}
   } else {
     return {}
   }

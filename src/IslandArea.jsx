@@ -4,6 +4,7 @@ import StateArea from "./StateArea.jsx";
 import Tile from "./Tile.jsx";
 import Artifact from "./Artifact.jsx";
 import Penguin from "./Penguin.jsx";
+import Fish from "./Fish.jsx";
 import waves from "./images/waves-back.png";
 
 
@@ -39,6 +40,9 @@ export default function IslandArea(props) {
           <div className="FreeArea" style={{zIndex:'40', pointerEvents:'none'}} >
             {island.penguins && island.penguins.map(penguin =><Penguin key={penguin.key} showBalloons={showBalloons} penguinObj={penguin}  
           illuminatedId={illuminatedId}/>)} 
+          </div>
+          <div className="FishArea" style={{zIndex:'45', pointerEvents:'none'}} >
+            {island.fishes && island.fishes.map(fish =><Fish key={fish.key} fishObj={fish} />)} 
           </div>
           <div className="NameArea" style={{zIndex:'50', pointerEvents:'none'}}>
             <div id="islandName">{island.name} {runningState===PAUSED?"(Paused - " + island.counter + ")":""}</div>

@@ -60,6 +60,15 @@ code {
   height: 480px;
 }
 
+.FishArea {
+  position: absolute;
+  /* Stay on top */
+  left: 16px;
+  top: 64px;
+  padding: 48px 48px;
+  width: 480px;
+  height: 480px;
+}
 
 .NameArea {
   position: absolute;
@@ -75,6 +84,10 @@ code {
 }
 
 .Penguin {
+  position: absolute;
+}
+
+.Fish {
   position: absolute;
 }
 

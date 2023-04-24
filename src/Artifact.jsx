@@ -27,7 +27,7 @@ export default function Artifact(props) {
 
     if (type === 5 && age > 0 ) {
       setArtifact({type:type, img: digImg[age]});
-    } else {
+    } else if (type !== 4) {
       setArtifact({type:type, img: artifacts[type]});
     }
   },[type,age])              

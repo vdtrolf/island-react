@@ -86,8 +86,6 @@ export default function Details(props) {
         grid.push(line)
       }
 
-      // console.dir(grid)
-
       penguin.knownWorld.forEach(cell => {
         let cellimg = (<img src={cell.art > 0?
             cell.art === 1 && cell.warm > 0? cellwarm[1]: cellartifacts[cell.art]:
