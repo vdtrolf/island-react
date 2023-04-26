@@ -1,7 +1,7 @@
 // base fetch point
 export default async function convert(request) {
   
-    const debug = false;
+    const debug = true;
     
     try {
       const fetchResult = await fetch(request); //Making the req
