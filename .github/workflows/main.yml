@@ -30,5 +30,17 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    - name: Deploy static site to S3 bucket
-      run: aws s3 sync ./ s3://taptapreact --delete
+    # - name: Deploy static site to S3 bucket
+    #  run: aws s3 sync ./ s3://taptapreact --delete
+      
+    - name: Deploying application to Amazon S3
+      uses: dvelasquez/deploy-s3-action@main
+      with:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          AWS_BUCKET_NAME: us-east-1
+          BUCKET_PATH: ""
+          DIST_LOCATION_CODE: ./build
+      
+      
