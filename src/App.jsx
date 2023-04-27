@@ -9,7 +9,7 @@ import Footer from "./Footer.jsx";
 import convert from "./Fetchserver.js"
 import {useState,useEffect} from "react";
 
-// const urls = [{name:"aws",url:"https://lub3kygki2.execute-api.us-east-1.amazonaws.com/Prod/"},
+// const urls = [{name:"aws",url:"https://8ikch5a2lf.execute-api.us-east-1.amazonaws.com/Prod/"},
 //               {name:"digital ocean", url:"https://lub3kygki2.execute-api.us-east-1.amazonaws.com/Prod/"},
 //               {name:"local", url:"http://localhost:3001/"}
 
@@ -23,7 +23,7 @@ const ENDED = 3;
 
 export default function App() {
 
-  const urls= [{name:"aws",url:"https://rz8f4tzue2.execute-api.us-east-1.amazonaws.com/Prod/"},
+  const urls= [{name:"aws",url:"https://8ikch5a2lf.execute-api.us-east-1.amazonaws.com/Prod/"},
   {name:"digital ocean", url:"https://lub3kygki2.execute-api.us-east-1.amazonaws.com/Prod/"},
   {name:"local", url:"http://localhost:3001/"}];
 
@@ -34,7 +34,7 @@ export default function App() {
   const [pulser,setPulser] = useState(false);
   const [showBalloons,setShowBalloons] = useState(false);
   const [island,setIsland] = useState({});
-  const [baseURL,setBaseURL] = useState({name:"aws", url:"https://rz8f4tzue2.execute-api.us-east-1.amazonaws.com/Prod/"});
+  const [baseURL,setBaseURL] = useState({name:"local", url:"http://localhost:3001/"});
   const [illuminatedId,setIlluminatedId] = useState(0);
   const [selectedId,setSelectedId] = useState(0);
   const [followId, setFollowId] = useState(0);
