@@ -3,6 +3,8 @@ import Button from "./Button.jsx";
 import logo from "./images/TTP-Logo.png";
 import stile from "./images/tile-s.png";
 import sfood from "./images/food-s.png";
+import therm from "./images/thermometer.png";
+import otherm from "./images/ocean-thermometer.png";
 
 export default function Navbar(props) {
 
@@ -15,10 +17,12 @@ export default function Navbar(props) {
 
   var tilesLine =[];
   var foodLine =[];
+  let temp = island.temperature ? Math.round(island.temperature * 10) / 10 + " °C":"0.4 °C"
+  let oceanTemp = island.oceanTemperature ? Math.round(island.oceanTemperature * 10) / 10 + " °C":"20.3 °C"
 
   if (island) {
-    for (let i=0;i <island.tilesCount && i < 9 ;i++) tilesLine.push(<img key={i} src={stile} width="24px" height ="24px" alt="" transition= "0.5s" />)
-    for (let i=0;i <island.foodCount && i < 9 ;i++) foodLine.push(<img key={i+1000} src={sfood} width="24px" height ="24px" alt="" transition= "0.5s" />)
+    for (let i=0;i <island.tilesCount && i < 6 ;i++) tilesLine.push(<img key={i} src={stile} width="24px" height ="24px" alt="" transition= "0.5s" />)
+    for (let i=0;i <island.foodCount && i < 6 ;i++) foodLine.push(<img key={i+1000} src={sfood} width="24px" height ="24px" alt="" transition= "0.5s" />)
   }
  
   return (
@@ -27,6 +31,10 @@ export default function Navbar(props) {
       <div className="NavbarInfo" >
         <div className="NavbarInfoLine" >{tilesLine}</div>
         <div className="NavbarInfoLine" >{foodLine}</div>
+      </div>
+      <div className="NavbarTemp" >
+        <div className="NavbarTempLine" ><img key="99999998" src={therm} width="20px" height ="20px" alt="" transition= "0.5s" />{temp}</div>
+        <div className="NavbarTempLine" ><img key="99999999" src={otherm} width="20px" height ="20px" alt="" transition= "0.5s" />{oceanTemp}</div>
       </div>
       <div className="ButtonArea">
         {runningState !== PAUSED && <div>&nbsp;</div>}

@@ -5,6 +5,7 @@ import Tile from "./Tile.jsx";
 import Artifact from "./Artifact.jsx";
 import Penguin from "./Penguin.jsx";
 import Fish from "./Fish.jsx";
+import Garbage from "./Garbage.jsx";
 import waves from "./images/waves-back.png";
 
 
@@ -41,11 +42,14 @@ export default function IslandArea(props) {
             {island.penguins && island.penguins.map(penguin =><Penguin key={penguin.key} showBalloons={showBalloons} penguinObj={penguin}  
           illuminatedId={illuminatedId}/>)} 
           </div>
-          <div className="FishArea" style={{zIndex:'45', pointerEvents:'none'}} >
+          <div className="FishArea" style={{zIndex:'43', pointerEvents:'none'}} >
             {island.fishes && island.fishes.map(fish =><Fish key={fish.key} fishObj={fish} />)} 
           </div>
-          <div className="NameArea" style={{zIndex:'50', pointerEvents:'none'}}>
-            <div id="islandName">{island.name} {runningState===PAUSED?"(Paused - " + island.counter + ")":""}</div>
+          <div className="GarbageArea" style={{zIndex:'45', pointerEvents:'none'}} >
+            {island.garbages && island.garbages.map(garbage =><Garbage key={garbage.key} garbageObj={garbage} />)} 
+          </div>
+          <div className="NameArea" style={{zIndex:'99', pointerEvents:'none'}}>
+            <div id="islandName">{island.name} {Math.round(island.year)} {runningState===PAUSED?"(Paused - " + island.counter + ")":""}</div>
             <div id="score">{island.points}</div>
           </div>
           <WeatherArea weather={weather} runningState={runningState}/>

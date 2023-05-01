@@ -70,6 +70,16 @@ code {
   height: 480px;
 }
 
+.GarbageArea {
+  position: absolute;
+  /* Stay on top */
+  left: 16px;
+  top: 64px;
+  padding: 48px 48px;
+  width: 480px;
+  height: 480px;
+}
+
 .NameArea {
   position: absolute;
   /* Stay on top */
@@ -88,6 +98,10 @@ code {
 }
 
 .Fish {
+  position: absolute;
+}
+
+.Garbage {
   position: absolute;
 }
 
@@ -147,18 +161,44 @@ code {
   background-image: url("./images/PF-back.png");
   background-repeat: repeat-x;
   display: grid;
-  grid-template-columns: 210px 248px 150px;
+  grid-template-columns: 210px 160px 90px 150px;
 }
 
 .NavbarInfo {
-  width: 204x;
+  width: 150px;
   height: 48px;
   align-items: left;
   padding: 1px 1px;
   font-size: 12px;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 24x 24px;
+  grid-template-rows: 24px 24px;
+}
+
+.NavbarInfoLine {
+  display: grid;
+  grid-template-columns: 26px 26px 26px 26px 26px 26px;
+  grid-template-rows: auto ;
+}
+
+.NavbarTemp {
+  width: 80px;
+  height: 48px;
+  align-items: left;
+  padding: 6px 1px;
+  font-family: Helvetica;
+  font-weight: bold;
+  font-size: 16px;
+  display: grid;
+  grid-template-columns: 90px;
+  grid-template-rows: 24px 24px;
+}
+
+.NavbarTempLine {
+  color: #fefdaf;
+  display: grid;
+  grid-template-columns: 26px 54px;
+  grid-template-rows: auto ;
 }
 
 .login {
@@ -281,12 +321,6 @@ label {
   color: rgb(175, 199, 216); 
 }
 
-.NavbarInfoLine {
-  
-  display: grid;
-  grid-template-columns: 26px 26px 26px 26px 26px 26px 26px 26px 26px 26px 26px 26px 26px;
-  grid-template-rows: auto ;
-}
 
 .ui-button {
   width: 24px;
@@ -410,8 +444,8 @@ label {
   z-index: 50;
   font-family: Helvetica;
   font-weight: bold;
-  font-size: 18px;
-  color: #fefdaf;
+  font-size: 22px;
+  color: #ffffff;
 }
 
 #score {
@@ -422,7 +456,7 @@ label {
   font-family: Helvetica;
   font-size: 32px;
   font-weight: bold;
-  color: #d0f5a9;
+  color: #ffffff;
 }
 
 .Footer {

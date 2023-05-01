@@ -32,7 +32,7 @@ export default function Fish(props) {
   
     return ( 
         <>
-        <div className="Fish" style={{left: fish.left + 'px', top: fish.top + 'px', transition:'1s'}} >
+        <div className="Fish" style={{left: fish.left + 'px', top: fish.top + 'px', transition:'2s'}} >
             <img src={fish.img} style={fish.style} alt= "" /> 
         </div>
         </>

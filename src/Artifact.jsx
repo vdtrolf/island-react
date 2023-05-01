@@ -4,13 +4,16 @@ import food from "./images/food.png";
 import swim from "./images/fish-1-still.gif";
 import cross from "./images/cross.png";
 import wreath from "./images/wreath.png";
-import ice from "./images/ice.png";
-import ice_1 from "./images/ice-1.png";
-import ice_2 from "./images/ice-2.png";
-import ice_3 from "./images/ice-3.png";
-import ice_4 from "./images/ice-4.png";
-import ice_5 from "./images/ice-5.png";
-import ice_6 from "./images/ice-6.png";
+//import ice from "./images/ice.png";
+
+import ice from "./images/ice-block-6.png";
+
+import ice_1 from "./images/ice-block-1.png";
+import ice_2 from "./images/ice-block-2.png";
+import ice_3 from "./images/ice-block-3.png";
+import ice_4 from "./images/ice-block-4.png";
+import ice_5 from "./images/ice-block-5.png";
+import ice_6 from "./images/ice-block-6.png";
 import kept from "./images/fish_kept.gif";
 
 export default function Artifact(props) {

@@ -34,7 +34,7 @@ export default function App() {
   const [pulser,setPulser] = useState(false);
   const [showBalloons,setShowBalloons] = useState(false);
   const [island,setIsland] = useState({});
-  const [baseURL,setBaseURL] = useState({name:"local", url:"http://localhost:3001/"});
+  const [baseURL,setBaseURL] = useState({name:"aws", url:"https://8ikch5a2lf.execute-api.us-east-1.amazonaws.com/Prod/"});
   const [illuminatedId,setIlluminatedId] = useState(0);
   const [selectedId,setSelectedId] = useState(0);
   const [followId, setFollowId] = useState(0);
@@ -319,6 +319,7 @@ const extractIslandData = (islandData) => {
   const artifacts = [];
   const penguins = [];
   const fishes = [];
+  const garbages = [];
 
   if (islandData && islandData.island) {
 
@@ -382,11 +383,25 @@ const extractIslandData = (islandData) => {
       }); 
     }
 
+    if (islandData.garbages) { 
+      islandData.garbages.forEach(garbage => {
+        garbages.push({key: garbage.id, 
+                    lpos:garbage.lpos, 
+                    hpos:garbage.hpos, 
+                    type:garbage.type, 
+                    age:garbage.age})
+      }); 
+    }
+
     return {id: islandData.islandId,
             name: islandData.islandName,
             size: islandData.islandSize,
             points: islandData.points,
+            year: islandData.year,
             weather: islandData.weather,
+            temperature : islandData.temperature,
+            plasticControl: islandData.plasticControl,
+            oceanTemperature: islandData.oceanTemperature,
             tilesCount: islandData.tiles,
             foodCount: islandData.food,
             counter: islandData.counter,
@@ -395,7 +410,9 @@ const extractIslandData = (islandData) => {
             tiles: tiles,
             artifacts: artifacts,
             penguins: penguins,
-            fishes: fishes}
+            fishes: fishes,
+            garbages: garbages}
+
   } else {
     return {}
   }
