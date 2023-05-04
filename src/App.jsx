@@ -313,7 +313,7 @@ const runOnce = async (baseURL, islandId) => {
 
 const extractIslandData = (islandData) => {
 
-  console.dir(islandData)
+  // console.dir(islandData)
 
   const tiles = [];
   const artifacts = [];

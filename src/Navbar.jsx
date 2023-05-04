@@ -8,7 +8,7 @@ import otherm from "./images/ocean-thermometer.png";
 
 export default function Navbar(props) {
 
-  // const NOT_STARTED = 0;
+  const NOT_STARTED = 0;
   const RUNNING = 1;
   const PAUSED = 2;
   // const ENDED = 3;
@@ -32,10 +32,11 @@ export default function Navbar(props) {
         <div className="NavbarInfoLine" >{tilesLine}</div>
         <div className="NavbarInfoLine" >{foodLine}</div>
       </div>
-      <div className="NavbarTemp" >
+      {runningState!== NOT_STARTED && <div className="NavbarTemp" >
         <div className="NavbarTempLine" ><img key="99999998" src={therm} width="20px" height ="20px" alt="" transition= "0.5s" />{temp}</div>
         <div className="NavbarTempLine" ><img key="99999999" src={otherm} width="20px" height ="20px" alt="" transition= "0.5s" />{oceanTemp}</div>
-      </div>
+      </div>}
+      {runningState===NOT_STARTED && <div>&nbsp;</div> }
       <div className="ButtonArea">
         {runningState !== PAUSED && <div>&nbsp;</div>}
         <Button className={runningState===RUNNING?"ButtonStop":"ButtonStart"} onClickHandler={runningState===RUNNING?onStopButton:onStartButton}>&nbsp;</Button>
