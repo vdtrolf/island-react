@@ -13,7 +13,7 @@ export default function Garbage(props) {
     useEffect(() => {
     
         const garbage_img = [garbage_1,garbage_1,garbage_2,garbage_3,garbage_4,garbage_5]
-        var image = garbage_img[garbageObj.type];
+        var image = garbage_img[garbageObj.kind];
  
         const style = {width: '48px', height:'48px', backgroundColor:'', borderRadius: '0px', boxShadow: ''}
         setGarbage({img:image,left:garbageObj.lpos*48,top:garbageObj.hpos*48, style:style});

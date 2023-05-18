@@ -31,24 +31,24 @@ export default function IslandArea(props) {
     return (
       <>
         <div>
-          <div className="WaveArea" ><img src={waves} alt="" /></div>
-          <div className="GridArea" style={{zIndex:'20'}} >
-            {island.tiles && island.tiles.map(tile =><Tile key={tile.key} tileType={tile.type} tileNum={tile.num} tileVar={tile.var} tileLine={tile.line} tileCol={tile.col} onTileClick={onTileClick} />)} 
+          <div className="WaveArea" key="div1" ><img src={waves} alt="" /></div>
+          <div className="GridArea" key="div2" style={{zIndex:'20'}} >
+            {island.tiles && island.tiles.map(tile =><Tile key={tile.key} tileType={tile.type} tileNum={tile.num} tileAngle={tile.ta} tileLine={tile.line} tileCol={tile.col} onTileClick={onTileClick} />)} 
           </div>
-          <div className="GridArea" style={{zIndex:'30', pointerEvents:'none'}}>
+          <div className="GridArea" key="div3" style={{zIndex:'30', pointerEvents:'none'}}>
             {island.artifacts && island.artifacts.map(artifact =><Artifact key={artifact.key} type={artifact.type} age={artifact.age} />)} 
           </div>
-          <div className="FreeArea" style={{zIndex:'40', pointerEvents:'none'}} >
+          <div className="FreeArea" key="div4" style={{zIndex:'40', pointerEvents:'none'}} >
             {island.penguins && island.penguins.map(penguin =><Penguin key={penguin.key} showBalloons={showBalloons} penguinObj={penguin}  
           illuminatedId={illuminatedId}/>)} 
           </div>
-          <div className="FishArea" style={{zIndex:'43', pointerEvents:'none'}} >
+          <div className="FishArea" key="div5" style={{zIndex:'43', pointerEvents:'none'}} >
             {island.fishes && island.fishes.map(fish =><Fish key={fish.key} fishObj={fish} />)} 
           </div>
-          <div className="GarbageArea" style={{zIndex:'45', pointerEvents:'none'}} >
+          <div className="GarbageArea" key="div6" style={{zIndex:'45', pointerEvents:'none'}} >
             {island.garbages && island.garbages.map(garbage =><Garbage key={garbage.key} garbageObj={garbage} />)} 
           </div>
-          <div className="NameArea" style={{zIndex:'99', pointerEvents:'none'}}>
+          <div className="NameArea" key="div7" style={{zIndex:'99', pointerEvents:'none'}}>
             <div id="islandName">{island.name} {Math.round(island.year)} {runningState===PAUSED?"(Paused - " + island.counter + ")":""}</div>
             <div id="score">{island.points}</div>
           </div>

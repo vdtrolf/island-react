@@ -53,7 +53,14 @@ export default function App() {
       }
       intervalId = setInterval( () => {
         refreshIsland(baseURL.url, island.id, followId)
-        .then((updatedIsland) => setIsland(updatedIsland));
+        .then((updatedIsland) => {
+          setIsland(updatedIsland);
+
+          if (updatedIsland.islands) {
+            console.dir(updatedIsland.islands);
+            setIslandsList(updatedIsland.islands);
+          }
+        });
 
         setFollowId(0);
 
@@ -62,11 +69,11 @@ export default function App() {
         });
 
         // if (sidebar) {
-          refreshIslandsList(baseURL.url)
-          .then((updatedIslandsList) => setIslandsList(updatedIslandsList));
+        //  refreshIslandsList(baseURL.url)
+        //   .then((updatedIslandsList) => setIslandsList(updatedIslandsList));
         // }
 
-      },2000)
+      },1500)
       
     } else {
       clearInterval(intervalId);
@@ -89,7 +96,7 @@ export default function App() {
       pulserIntervalId = setInterval( () => {
         console.log("in pulser interval " + pulserIntervalId );
         sendState(baseURL.url);
-      },2000)
+      },1500)
       
     } else {
       clearInterval(pulserIntervalId );
@@ -324,8 +331,8 @@ const extractIslandData = (islandData) => {
   if (islandData && islandData.island) {
 
     islandData.island.forEach(tile => {
-      tiles.push({key: tile.li *10 + tile.col, type: tile.type, num: tile.num, var: tile.var, line: tile.li, col:tile.col})
-      artifacts.push({key: (10000 + tile.li *10 + tile.col), type: tile.art, age: tile.age, line: tile.li, col:tile.col})
+      tiles.push({key: tile.li *1000 + tile.col, type: tile.nat, num: tile.sml, ta: tile.ta, line: tile.li, col:tile.col})
+      artifacts.push({key: (100000 + tile.li *1000 + tile.col), type: tile.art, age: tile.age, line: tile.li, col:tile.col})
     }); 
 
     islandData.penguins.forEach(penguin => {
@@ -388,8 +395,7 @@ const extractIslandData = (islandData) => {
         garbages.push({key: garbage.id, 
                     lpos:garbage.lpos, 
                     hpos:garbage.hpos, 
-                    type:garbage.type, 
-                    age:garbage.age})
+                    kind:garbage.kind})
       }); 
     }
 
@@ -412,6 +418,9 @@ const extractIslandData = (islandData) => {
             penguins: penguins,
             fishes: fishes,
             garbages: garbages}
+
+
+     
 
   } else {
     return {}

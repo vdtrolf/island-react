@@ -38,7 +38,7 @@ import empty from "./images/empty.png";
 export default function Tile(props) {
 
   const [tile,setTile] = useState({});  
-  const {tileType,tileNum, tileVar, tileLine, tileCol, onTileClick } = props;
+  const {tileType,tileNum, tileAngle, tileLine, tileCol, onTileClick } = props;
   
   useEffect(() => {
 
@@ -62,13 +62,13 @@ export default function Tile(props) {
 
         var tileImg = empty;
         if (tileType === 1) {
-            tileImg = tiles[tileVar==="a"?tileNum*2:tileNum*2 +1];
+            tileImg = tiles[tileAngle==="a"?tileNum*2:tileNum*2 +1];
         } else if (tileType > 1) {
             tileImg = earth;
         }
         
-        setTile({num:tileNum,var:tileVar,line:tileLine,col:tileCol,img:tileImg});
-   },[tileType,tileNum,tileCol,tileLine,tileVar])              
+        setTile({num:tileNum,ta:tileAngle,line:tileLine,col:tileCol,img:tileImg});
+   },[tileType,tileNum,tileCol,tileLine,tileAngle])              
 
    const handleClick = () => {
       onTileClick(tile.line,tile.col);

@@ -163,7 +163,7 @@ export default function Penguin(props) {
         {penguin.hasballoon && (<div className="Penguin" style={{left: (penguin.left + 24) + 'px', top: (penguin.top - 36) + 'px', opacity:'0.8', transition:'1s'}} >
           <img src={penguin.balloon} style={{width: '36px', height: '36px' }} alt =""/>
         </div>)}
-        <div className="Penguin" style={{left: penguin.left + 'px', top: penguin.top + 'px', transition:'2s'}} >
+        <div className="Penguin" style={{left: penguin.left + 'px', top: penguin.top + 'px', transition:'1.5s'}} >
           <img src={penguin.img} style={penguin.style} alt= "" /> 
         </div>
       </>
