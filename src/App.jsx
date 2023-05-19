@@ -34,7 +34,7 @@ export default function App() {
   const [pulser,setPulser] = useState(false);
   const [showBalloons,setShowBalloons] = useState(false);
   const [island,setIsland] = useState({});
-  const [baseURL,setBaseURL] = useState({name:"aws", url:"https://8ikch5a2lf.execute-api.us-east-1.amazonaws.com/Prod/"});
+  const [baseURL,setBaseURL] = useState({name:"local", url:"http://localhost:3001/"});
   const [illuminatedId,setIlluminatedId] = useState(0);
   const [selectedId,setSelectedId] = useState(0);
   const [followId, setFollowId] = useState(0);
@@ -73,7 +73,7 @@ export default function App() {
         //   .then((updatedIslandsList) => setIslandsList(updatedIslandsList));
         // }
 
-      },1500)
+      },5000)
       
     } else {
       clearInterval(intervalId);
@@ -96,7 +96,7 @@ export default function App() {
       pulserIntervalId = setInterval( () => {
         console.log("in pulser interval " + pulserIntervalId );
         sendState(baseURL.url);
-      },1500)
+      },5000)
       
     } else {
       clearInterval(pulserIntervalId );
