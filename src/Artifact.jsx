@@ -1,7 +1,6 @@
 import React, {useState,useEffect} from "react";
 import empty from "./images/empty.png";
 import food from "./images/food.png";
-import swim from "./images/fish-1-still.gif";
 import cross from "./images/cross.png";
 import wreath from "./images/wreath.png";
 import target from "./images/target.png"

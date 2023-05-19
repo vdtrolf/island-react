@@ -3,9 +3,6 @@ import Button from "./Button.jsx";
 import logo from "./images/TTP-Logo.png";
 import stile from "./images/tile-s.png";
 import sfood from "./images/food-s.png";
-import therm from "./images/thermometer.png";
-import otherm from "./images/ocean-thermometer.png";
-
 import therm_0 from "./images/therm-0.png";
 import therm_1 from "./images/therm-1.png";
 import therm_2 from "./images/therm-2.png";
@@ -25,8 +22,6 @@ export default function Navbar(props) {
 
   const { runningState, island, admin, baseURL, pulser, onStartButton, onOnceButton, onStopButton, onPlusButton, onCloneButton, onStepsButton, onAdminButton } = props;
 
-
- 
     const therm = [therm_0,therm_1,therm_2,therm_3,therm_3,therm_3,therm_3]
     const otherm = [otherm_0,otherm_1,otherm_2,otherm_3,otherm_3,otherm_3,otherm_3]
 
