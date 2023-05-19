@@ -16,7 +16,7 @@ export default function IslandArea(props) {
 
   const NOT_STARTED = 0;
   // const RUNNING = 1;
-  const PAUSED = 2;
+  // const PAUSED = 2;
   const ENDED = 3;
 
   const debug = false;
@@ -49,8 +49,8 @@ export default function IslandArea(props) {
             {island.garbages && island.garbages.map(garbage =><Garbage key={garbage.key} garbageObj={garbage} />)} 
           </div>
           <div className="NameArea" key="div7" style={{zIndex:'99', pointerEvents:'none'}}>
-            <div id="islandName">{island.name} {Math.round(island.year)} {runningState===PAUSED?"(Paused - " + island.counter + ")":""}</div>
-            <div id="score">{island.points}</div>
+            <div id="islandName">{island.name} - {island.points} pts</div>
+            <div id="score">{Math.round(island.year)}</div>
           </div>
           <WeatherArea weather={weather} runningState={runningState}/>
           {(runningState===ENDED) && <StateArea runningState={runningState} />}

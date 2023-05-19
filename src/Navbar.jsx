@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./Button.jsx";
-import logo from "./images/TTP-Logo.png";
+import logo from "./images/TTP-logo2.png";
 import stile from "./images/tile-s.png";
 import sfood from "./images/food-s.png";
 import therm_0 from "./images/therm-0.png";
@@ -45,7 +45,7 @@ export default function Navbar(props) {
  
   return (
     <div className="Navbar">
-      <img src={logo} alt="logo" />
+      <img src={logo} alt="logo" width="180px" height ="48px" />
       <div className="NavbarInfo" >
         <div className="NavbarInfoLine" >{tilesLine}</div>
         <div className="NavbarInfoLine" >{foodLine}</div>
@@ -55,7 +55,9 @@ export default function Navbar(props) {
         <div className="NavbarTempLine" ><img key="99999999" src={otherm[oceanFactor]} width="20px" height ="20px" alt="" transition= "0.5s" />{oceanTemp}</div>
       </div>}
       {runningState===NOT_STARTED && <div>&nbsp;</div> }
+      
       <div className="ButtonArea">
+        {(!admin || baseURL.name==="local") && <div>&nbsp;</div>}
         {runningState !== PAUSED && <div>&nbsp;</div>}
         <Button className={runningState===RUNNING?"ButtonStop":"ButtonStart"} onClickHandler={runningState===RUNNING?onStopButton:onStartButton}>&nbsp;</Button>
         {runningState === PAUSED && <Button className="ButtonOnce" onClickHandler={onOnceButton}>&nbsp;</Button>}
