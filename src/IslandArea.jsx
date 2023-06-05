@@ -48,7 +48,7 @@ export default function IslandArea(props) {
           <div className="GarbageArea" key="div6" style={{zIndex:'45', pointerEvents:'none'}} >
             {island.garbages && island.garbages.map(garbage =><Garbage key={garbage.key} garbageObj={garbage} />)} 
           </div>
-          <div className="NameArea" key="div7" style={{zIndex:'99', pointerEvents:'none'}}>
+          <div className="NameArea" key="div7" style={{zIndex:'65', pointerEvents:'none'}}>
             <div id="islandName">{island.name} - {island.points} pts</div>
             <div id="score">{Math.round(island.year)}</div>
           </div>
