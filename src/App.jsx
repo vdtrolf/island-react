@@ -68,7 +68,7 @@ export default function App() {
           if (penguin.key === selectedId && ! penguin.alive) setSelectedId(0);
         });
 
-      },5000)
+      },2000)
       
     } else {
       clearInterval(intervalId);
@@ -91,7 +91,7 @@ export default function App() {
       pulserIntervalId = setInterval( () => {
         console.log("in pulser interval " + pulserIntervalId );
         sendState(baseURL.url);
-      },5000)
+      },2000)
       
     } else {
       clearInterval(pulserIntervalId );
