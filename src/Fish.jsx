@@ -7,7 +7,7 @@ import fish_2_moving from "./images/fish-2-moving.gif";
 import fish_3_moving from "./images/fish-3-moving.gif";
 import fish_4_moving from "./images/fish-4-moving.gif";
 
-export default function Fish(props) {
+const Fish = (props) => {
 
     const [fish,setFish] = useState({});  
     const {fishObj} = props;
@@ -39,3 +39,5 @@ export default function Fish(props) {
     )
 
 }
+
+export default Fish;

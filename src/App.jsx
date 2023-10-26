@@ -9,13 +9,6 @@ import Footer from "./Footer.jsx";
 import convert from "./Fetchserver.js"
 import {useState,useEffect} from "react";
 
-// const urls = [{name:"aws",url:"https://ayv5bav97c.execute-api.us-east-1.amazonaws.com/Prod/"},
-//               {name:"digital ocean", url:"https://lub3kygki2.execute-api.us-east-1.amazonaws.com/Prod/"},
-//               {name:"local", url:"http://localhost:3001/"}
-
-// test 2
-
-
 const NOT_STARTED = 0;
 const RUNNING = 1;
 const PAUSED = 2;
@@ -34,7 +27,7 @@ export default function App() {
   const [pulser,setPulser] = useState(false);
   const [showBalloons,setShowBalloons] = useState(false);
   const [island,setIsland] = useState({});
-  const [baseURL,setBaseURL] = useState({name:"aws", url:"https://ayv5bav97c.execute-api.us-east-1.amazonaws.com/Prod/"});
+  const [baseURL,setBaseURL] = useState({name:"local", url:"http://localhost:3001/"});
   const [illuminatedId,setIlluminatedId] = useState(0);
   const [selectedId,setSelectedId] = useState(0);
   const [followId, setFollowId] = useState(0);
@@ -117,7 +110,6 @@ export default function App() {
 
     setRunningState(RUNNING)
     setRunning(baseURL.url, island.id, true)
-    // console.log("BUTTON START PRESSED");
   } 
 
   const handleOnceButton = () => {
@@ -361,6 +353,7 @@ const extractIslandData = (islandData) => {
                     age:penguin.age, 
                     genderName:penguin.gender, 
                     fishDirection:penguin.fishDirection, 
+                    
                     digDirection:penguin.digDirection, 
                     fillDirection:penguin.fillDirection, 
                     strategyShort:penguin.strategyShort, 

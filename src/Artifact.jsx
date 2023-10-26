@@ -4,7 +4,6 @@ import food from "./images/food.png";
 import cross from "./images/cross.png";
 import wreath from "./images/wreath.png";
 import target from "./images/target.png"
-//import ice from "./images/ice.png";
 
 import ice from "./images/ice-block-6.png";
 
