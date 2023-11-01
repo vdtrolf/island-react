@@ -17,7 +17,7 @@ const ENDED = 3;
 export default function App() {
 
   const urls= [{name:"aws",url:"https://ayv5bav97c.execute-api.us-east-1.amazonaws.com/Prod/"},
-  {name:"taptap", url:"http://85.215.204.50/taptap"},
+  {name:"taptap", url:"http://85.215.204.50/taptap/"},
   {name:"local", url:"http://localhost:3001/"}];
 
   const [sidebar,setSidebar] = useState(false);
@@ -27,7 +27,7 @@ export default function App() {
   const [pulser,setPulser] = useState(false);
   const [showBalloons,setShowBalloons] = useState(false);
   const [island,setIsland] = useState({});
-  const [baseURL,setBaseURL] = useState({name:"taptap", url:"http://85.215.204.50/taptap"});
+  const [baseURL,setBaseURL] = useState({name:"aws", url:"https://ayv5bav97c.execute-api.us-east-1.amazonaws.com/Prod/"});
   const [illuminatedId,setIlluminatedId] = useState(0);
   const [selectedId,setSelectedId] = useState(0);
   const [followId, setFollowId] = useState(0);
