@@ -5,7 +5,7 @@ export default function Sidebar(props) {
 
   const {admin, sidebar, onCloseButton, onIslandSelect, onIslandDelete, islandsList } = props;
     
-  const [checkedState, setCheckedState] = useState(new Array(islandsList.length).fill(false));
+  const [checkedState, setCheckedState] = useState();
   const [selected,setSelected] = useState(false);
 
   const handleIslandClick = (id) => {
