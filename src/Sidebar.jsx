@@ -38,8 +38,10 @@ export default function Sidebar(props) {
   }
 
   useEffect(() =>{
-    setCheckedState(new Array(islandsList.length).fill(false))
-  },[islandsList.length])
+    if (islandsList) {
+      setCheckedState(new Array(islandsList.length).fill(false))
+    }
+  },[islandsList])
 
   if (islandsList) {
 
